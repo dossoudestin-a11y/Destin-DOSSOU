@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Informatique - Métiers & Bienfaits</title>
+<style>
+    * {margin:0; padding:0; box-sizing:border-box}
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    padding: 80px 20px;
+    text-align: center;
+  }
+  header h1 {font-size: 42px; margin-bottom: 15px}
+  header p {font-size: 20px; opacity: 0.9}
+  .btn {
+    display: inline-block;
+    background: white;
+    color: #3b82f6;
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: transform 0.2s;
+  }
+  .btn:hover {transform: scale(1.05)}
+  section {max-width: 900px; margin: 60px auto; padding: 0 20px}
+  h2 {font-size: 32px; margin-bottom: 25px; color: #60a5fa}
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    transition: transform 0.3s;
+  }
+  .card:hover {transform: translateY(-5px); border-color: #3b82f6}
+  .card h3 {color: #38bdf8; margin-bottom: 10px; font-size: 20px}
+  .bienfaits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 30px;
+  }
+  .bienfait {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    padding: 30px;
+    border-radius: 16px;
+    border-left: 4px solid #3b82f6;
+  }
+  .ressources a {
+    display: block;
+    background: #1e293b;
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    color: #60a5fa;
+    text-decoration: none;
+    border: 1px solid #334155;
+  }
+  .ressources a:hover {background: #334155}
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 80px;
+    border-top: 1px solid #334155;
+    opacity: 0.8;
+  }
+  @media(max-width: 600px) {
+    .bienfaits {grid-template-columns: 1fr}
+    header h1 {font-size: 32px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>L'Informatique 💻</h1>
+  <p>Le moteur du monde moderne</p>
+  <a href="surf.html" class="btn">🎮 Jouer au Surf Game</a>
+</header>
+
+<section>
+  <h2>Pourquoi l'informatique change tout ?</h2>
+  <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=900&q=80" 
+       alt="Code informatique" 
+       style="width:100%; border-radius:16px; margin:20px 0">
+  <div class="bienfaits">
+    <div class="bienfait">
+      <h3>🚀 Innovation</h3>
+      <p>Elle crée les outils de demain : IA, médecine, espace, énergies vertes. Sans code, pas de smartphone, pas d’Internet.</p>
+    </div>
+    <div class="bienfait">
+      <h3>💼 Emplois</h3>
+      <p>Des millions de métiers créés. Développeur, data analyst, cybersécurité, UX design... Salaire élevé + télétravail possible.</p>
+    </div>
+    <div class="bienfait">
+      <h3>🌍 Connexion</h3>
+      <p>Rapproche les gens. Tu parles à Cotonou comme à Tokyo en 1 clic. L’info circule librement.</p>
+    </div>
+    <div class="bienfait">
+      <h3>🧠 Pouvoir</h3>
+      <p>Apprendre à coder = apprendre à résoudre des problèmes. Tu deviens créateur au lieu de consommateur.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Métiers de l'informatique</h2>
+  <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=900&q=80" 
+       alt="Équipe tech" 
+       style="width:100%; border-radius:16px; margin:20px 0">
+  <div class="grid">
+    <div class="card"><h3>Développeur Web/App</h3><p>Crée sites, apps, jeux. HTML, JS, Python. C’est le métier de base pour débuter.</p></div>
+    <div class="card"><h3>Cybersécurité</h3><p>Protège les données, les banques, les gouvernements contre les hackers. Très demandé.</p></div>
+    <div class="card"><h3>Data/IA</h3><p>Analyse des millions de données. Entraîne ChatGPT, TikTok, Netflix. Le futur.</p></div>
+    <div class="card"><h3>DevOps/Cloud</h3><p>Fait tourner les serveurs d’AWS, Google. S’assure que tout marche 24h/24.</p></div>
+    <div class="card"><h3>UX/UI Design</h3><p>Rend les apps belles et faciles à utiliser. Moitié art, moitié tech.</p></div>
+    <div class="card"><h3>Support IT</h3><p>Dépanne les PC, réseaux, imprimantes. Porte d’entrée idéale pour débuter.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Comment débuter gratuitement ?</h2>
+  <p style="margin-bottom:20px">T’as pas besoin d’argent pour commencer. Juste un téléphone/PC et Internet :</p>
+  <div class="ressources">
+    <a href="https://www.freecodecamp.org/french/" target="_blank">1. freeCodeCamp - Cours complet HTML/CSS/JS 100% gratuit</a>
+    <a href="https://developer.mozilla.org/fr/" target="_blank">2. MDN Web Docs - La bible des devs web</a>
+    <a href="https://www.codecademy.com/learn/introduction-to-javascript" target="_blank">3. Codecademy - Apprends JS en jouant</a>
+    <a href="https://github.com/" target="_blank">4. GitHub - Héberge tes projets comme celui-ci</a>
+  </div>
+</section>
+
+<footer>
+  Fait avec ❤️ par Destin • Hébergé sur GitHub Pages
+</footer>
+
+</body>
+</html>
