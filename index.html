@@ -12,328 +12,320 @@
   <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ELI10 Academy | 11 Leçons + Jeu - 15 000 FCFA</title>
+<!--
+
+= 1. PARTIE HEAD = LA CARTE D'IDENTITÉ DU SITE =
+
+Ici on dit au navigateur : C’est quoi ce site, comment il s’appelle, etc.
+-->
+<meta charset="UTF-8"> <!-- Ça permet d’écrire les accents : é, à, ç -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Pour que ça soit joli sur téléphone -->
+<meta name="theme-color" content="#6d28d9"> <!-- Couleur de la barre en haut sur Android -->
+<meta name="description" content="ELI10 Academy par Destin Cédric. Deviens Dev Web en 11 Leçons. 15 000 FCFA. WhatsApp 01 40 31 18 36"> <!-- Texte que Google affiche -->
+<title>ELI10 Academy | Destin Cédric | Formation Dev Web Bénin</title> <!-- Titre de l’onglet -->
+<link rel="manifest" href="manifest.json"> <!-- Fichier pour installer l’appli -->
+
+<!-- CODE GOOGLE ADSENSE : L’ARGENT. REMPLACE ca-pub-TA_ID_ICI -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-TA_ID_ICI"
+     crossorigin="anonymous"></script>
+
 <style>
-  :root{--bg:#0a0c10;--card:#12151c;--text:#f5f7fa;--muted:#9aa3b2;--accent:#00d9ff;--accent2:#8b5cf6;--green:#22c55e;--wa:#25D366}
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Segoe UI',system-ui;background:var(--bg);color:var(--text);line-height:1.7}
-  section{padding:80px 20px;max-width:1100px;margin:auto}
-  h1{font-size:52px;line-height:1.1;font-weight:900} h2{font-size:36px;margin-bottom:24px;font-weight:800;text-align:center}
-  h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  p{color:var(--muted);font-size:18px}
-.btn{padding:16px 32px;border-radius:14px;text-decoration:none;font-weight:800;display:inline-block;transition:.3s;cursor:pointer;border:none;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
-.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#000}
-.btn.green{background:var(--green);color:#000}
-.btn.wa{background:var(--wa);color:#000}
-.btn:hover{transform:translateY(-3px)}
-.grid{display:grid;gap:24px}
-.card{background:var(--card);padding:28px;border-radius:20px;border:1px solid #1f2330}
-  nav{position:sticky;top:0;background:rgba(10,12,16,.85);backdrop-filter:blur(12px);padding:14px 20px;border-bottom:1px solid #1f2330;z-index:50;display:flex;justify-content:space-between;align-items:center}
-  nav a{color:var(--muted);text-decoration:none;margin:0 14px;font-weight:700}
-  nav a:hover{color:var(--accent)}
-.logo{font-size:24px;font-weight:900;display:flex;align-items:center;gap:10px}
-.logo svg{width:32px;height:32px}
-.hero{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center;min-height:90vh}
-  @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}}
-.photo{border-radius:28px;overflow:hidden;box-shadow:0 25px 70px rgba(139,92,246,.35)}
-.photo img{width:100%;height:100%;object-fit:cover;display:block}
-.chat-box{background:#0b141a;border-radius:14px;padding:18px;height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;margin:18px 0;border:1px solid #1f2330}
-.msg{background:#1f2c33;padding:12px 16px;border-radius:12px;max-width:85%;position:relative;white-space:pre-wrap}
-.msg.user{align-self:flex-end;background:#005c4b;color:#e9edef}
-.msg.bot{align-self:flex-start;background:#202c33;color:#e9edef}
-.msg.time{font-size:11px;opacity:.6;margin-left:10px}
-  input{width:100%;padding:14px;border-radius:12px;border:1px solid #2a2f3f;background:#0a0c10;color:#fff;font-size:16px}
-  canvas{width:100%;max-width:700px;height:340px;background:linear-gradient(#87CEEB 0%, #87CEEB 70%, #3CB371 70%);border-radius:16px;display:block;margin:auto}
-  #gameStart{position:absolute;transform:translate(-50%,-50%);left:50%;top:50%;z-index:10}
-.game-wrap{position:relative}
-.badge{display:inline-block;background:rgba(0,217,255,.1);border:1px solid rgba(0,217,255,.3);color:var(--accent);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:12px}
-.badge.green{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:var(--green)}
-.badge.orange{background:rgba(251,146,60,.1);border-color:rgba(251,146,60,.3);color:#fb923c}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:1000;align-items:center;justify-content:center;padding:20px}
-.modal.active{display:flex}
-.modal-content{width:100%;max-width:420px;background:#0b141a;border-radius:20px;overflow:hidden;border:1px solid #2a2f3f}
-.form-group{margin-bottom:16px;text-align:left}
-.form-group label{display:block;margin-bottom:6px;font-size:14px;color:var(--muted)}
-.prix-box{font-size:42px;font-weight:900;color:var(--green);margin:10px 0}
-.categorie{margin-bottom:20px;padding:16px;background:#1a1f2e;border-radius:12px;border-left:4px solid var(--accent)}
-.categorie h4{color:var(--accent);margin-bottom:8px}
-.locked{opacity:.5}
-  footer{text-align:center;padding:50px 20px;color:#666;font-size:14px;border-top:1px solid #1f2330}
-.cta-final{font-size:22px;font-weight:900;text-align:center;margin-top:30px;color:var(--green)}
-.sticker{font-size:50px;text-align:center;margin-top:10px}
+  /*
+
+  = 2. PARTIE CSS = LA DÉCORATION DE LA MAISON =
+
+  Ici on met toutes les couleurs, tailles, animations. C’est le styliste.
+  */
+
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap'); /* On importe une police belle */
+
+  :root{ /* On crée des variables. Pour changer la couleur violet, tu changes juste ici */
+    --accent:#8b5cf6; /* Violet principal */
+    --accent2:#ec4899; /* Rose secondaire */
+    --green:#10b981; /* Vert validation */
+    --glass:rgba(255,255,255,0.1); /* Effet verre transparent */
+    --glass-border:rgba(255,255,255,0.2); /* Bordure verre */
+    --shadow:0 8px 32px rgba(0,0,0,.3); /* Ombre normale */
+    --shadow-lg:0 20px 60px rgba(139,92,246,.4); /* Grosse ombre violette */
+  }
+  *{margin:0;padding:0;box-sizing:border-box} /* On reset tout. Pas de marge moche par défaut */
+
+  /*
+  ========== FOND D'ÉCRAN CINÉMA ==========
+  On met 3 couches : Vidéo + Dégradé + Particules
+  */
+  body{
+    font-family:'Outfit',system-ui; /* Police principale */
+    color:#fff; /* Tout le texte est blanc */
+    overflow-x:hidden; /* Pas de scroll horizontal moche */
+    background:#0f0a1a; /* Fond noir si la vidéo charge pas */
+  }
+  #bgVideo{ /* La vidéo qui bouge derrière */
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    object-fit:cover; /* La vidéo remplit tout l’écran */
+    z-index:-3; /* On la met derrière tout */
+    opacity:0.4; /* Semi-transparent */
+    filter:blur(2px); /* Flou pour pas que ça gêne le texte */
+  }
+  body::before{ /* Couche 2 : Le filtre violet rose par dessus la vidéo */
+    content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+    background:linear-gradient(135deg,rgba(15,10,26,.9) 0%,rgba(76,29,149,.8) 50%,rgba(236,72,153,.7) 100%);
+    z-index:-2;
+  }
+  body::after{ /* Couche 3 : Les petits points qui bougent = effet Matrix */
+    content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+    background-image:radial-gradient(#a78bfa 1px, transparent 1px),radial-gradient(#f472b6 1px, transparent 1px);
+    background-size: 50px 50px, 80px 80px;
+    animation: float 20s linear infinite; /* Animation lente de 20 secondes */
+    z-index:-1;opacity:0.3;
+  }
+  @keyframes float{0%{transform:translate(0,0)}100%{transform:translate(50px,50px)}} /* L’animation des points */
+
+.container{max-width:1300px;margin:auto;padding:0 24px} /* Le conteneur qui centre tout */
+
+  /* ========== HEADER = LA BARRE EN HAUT ========== */
+  header{position:sticky;top:0;z-index:100;background:var(--glass);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border)}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0} /* Logo à gauche, bouton à droite */
+.logo{font-weight:900;font-size:26px;background:linear-gradient(90deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent} /* Logo avec dégradé */
+.btn{padding:16px 32px;border-radius:14px;font-weight:900;border:none;cursor:pointer;transition:.3s;font-size:16px} /* Style de tous les boutons */
+.btn.primary{background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;box-shadow:var(--shadow-lg)} /* Bouton violet rose */
+.btn.primary:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 0 40px rgba(236,72,153,.6)} /* Effet quand la souris passe dessus */
+.btn.install{background:linear-gradient(135deg,#ff6b00,#f97316);color:#fff;position:fixed;bottom:24px;right:24px;z-index:999;display:none;padding:18px 28px;border-radius:18px;animation:bounce 2s infinite} /* Bouton Installer qui rebondit */
+
+  /* ========== HERO = LA GRANDE SECTION D'ACCUEIL ========== */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:140px 0;min-height:100vh} /* 2 colonnes : texte + image */
+.hero h1{font-size:64px;line-height:1.02;font-weight:900;letter-spacing:-2px;text-shadow:0 0 30px rgba(139,92,246,.5)} /* Gros titre */
+.hero h1 span{background:linear-gradient(90deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent} /* Mot en dégradé */
+.hero p{color:#e2e8f0;margin:28px 0;font-size:21px;line-height:1.8;font-weight:500} /* Paragraphe */
+.hero img{width:100%;border-radius:40px;box-shadow:var(--shadow-lg);border:4px solid var(--glass-border);transform:perspective(1000px) rotateY(-5deg);transition:.5s} /* Image 3D */
+.hero img:hover{transform:perspective(1000px) rotateY(0deg) scale(1.03)} /* L’image se redresse au hover */
+.hero.tags{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap} /* Les petits tags HTML CSS JS */
+.tag{background:var(--glass);backdrop-filter:blur(10px);padding:10px 20px;border-radius:50px;font-size:14px;font-weight:800;border:1px solid var(--glass-border)}
+
+  section{padding:120px 0;position:relative} /* Espace entre chaque grosse section */
+  h2{font-size:48px;text-align:center;margin-bottom:70px;font-weight:900;text-shadow:0 0 20px rgba(139,92,246,.3)} /* Tous les titres H2 */
+
+  /* ========== COMPTEUR URGENCE = POUR VENDRE PLUS VITE ========== */
+.countdown{background:linear-gradient(135deg,#ef4444,#f97316);padding:20px;border-radius:20px;text-align:center;margin:40px auto;max-width:600px;font-weight:900;font-size:20px;animation:pulse 2s infinite} /* Bande rouge qui pulse */
+.countdown span{font-size:32px;color:#fff} /* Le chiffre en gros */
+
+  /* ========== CARTES MODULES = AVEC IMAGES UNSPLASH 4K ========== */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:36px} /* Grille 3 colonnes */
+.card{background:var(--glass);backdrop-filter:blur(20px);border-radius:28px;box-shadow:var(--shadow);border:1px solid var(--glass-border);transition:.4s;overflow:hidden} /* Carte effet verre */
+.card:hover{transform:translateY(-12px) scale(1.02);box-shadow:var(--shadow-lg);border-color:#a78bfa} /* La carte monte quand tu passes la souris */
+.card img{width:100%;height:180px;object-fit:cover} /* Image en haut de la carte */
+.card.content{padding:28px} /* Texte dans la carte */
+.card.locked{opacity:.4;filter:grayscale(0.5)} /* Carte bloquée = grisée */
+.badge{display:inline-block;background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;padding:10px 16px;border-radius:50px;font-size:12px;font-weight:900;margin-bottom:16px} /* Badge MODULE 1 */
+.card h3{font-size:24px;margin-bottom:14px;font-weight:800} /* Titre de la carte */
+.card p{color:#cbd5e1;line-height:1.7} /* Texte de la carte */
+
+  /* ========== TÉMOIGNAGES = PREUVE SOCIALE ========== */
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:60px} /* 3 avis clients */
+.testimonial{background:var(--glass);backdrop-filter:blur(20px);padding:32px;border-radius:24px;border:1px solid var(--glass-border)}
+.testimonial.head{display:flex;align-items:center;gap:16px;margin-bottom:16px} /* Photo + Nom */
+.testimonial img{width:60px;height:60px;border-radius:50%;border:3px solid var(--accent)} /* Photo ronde */
+.testimonial.name{font-weight:800;font-size:17px} /* Nom du client */
+.testimonial.role{font-size:13px;color:#a78bfa} /* Son métier */
+.testimonial.stars{color:#fbbf24;font-size:18px;margin-top:8px} /* Les étoiles ★★★ */
+
+.pricing{max-width:500px;margin:0 auto;text-align:center;padding:60px;border:2px solid #a78bfa;background:var(--glass);backdrop-filter:blur(30px)} /* Bloc prix */
+.prix{font-size:64px;font-weight:900;background:linear-gradient(135deg,#10b981,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:20px 0} /* Prix en vert dégradé */
+.prix.info{font-size:16px;color:#e2e8f0;margin-top:24px;font-weight:700;line-height:2} /* Infos MoMo */
+
+.ad-box{margin:70px auto;text-align:center;max-width:728px;min-height:90px;background:var(--glass);border-radius:20px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-weight:800;border:1px dashed var(--glass-border)} /* Bloc Pub Google */
+
+  /* ========== CHAT IA = AVEC MICRO ========== */
+.chat-wrap{background:var(--glass);backdrop-filter:blur(30px);border-radius:32px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--glass-border);max-width:900px;margin:auto}
+.chat-head{display:flex;align-items:center;gap:18px;padding:24px;border-bottom:1px solid var(--glass-border);background:rgba(139,92,246,.1)}
+.chat-head img{width:56px;height:56px;border-radius:50%;border:3px solid #a78bfa} /* Photo Destin */
+.name{font-weight:900;font-size:18px}
+.status{font-size:14px;color:var(--green);display:flex;align-items:center;gap:8px;font-weight:800}
+.status::before{content:'';width:12px;height:12px;background:var(--green);border-radius:50%;box-shadow:0 0 15px var(--green)} /* Point vert qui brille */
+.chat-box{background:rgba(0,0,0,.3);height:500px;overflow-y:auto;padding:32px;display:flex;flex-direction:column;gap:18px} /* Zone des messages */
+.msg{display:flex;gap:16px;max-width:90%;animation:fadeIn.5s ease} /* Animation d’apparition */
+.avatar{width:44px;height:44px;border-radius:50%;border:2px solid var(--glass-border)} /* Photo profil */
+.bubble{padding:18px 22px;border-radius:24px;font-size:16px;line-height:1.8;font-weight:500} /* Bulle de texte */
+.bot.bubble{background:rgba(255,255,255,.1);border:1px solid var(--glass-border)} /* Bulle Destin */
+.user{margin-left:auto;flex-direction:row-reverse} /* Bulle toi à droite */
+.user.bubble{background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff} /* Bulle toi violet */
+.chat-input{display:flex;gap:12px;padding:22px;border-top:1px solid var(--glass-border);align-items:center} /* Barre en bas */
+.chat-input input{flex:1;padding:18px 22px;border-radius:16px;border:2px solid var(--glass-border);background:rgba(0,0,0,.4);color:#fff;font-size:16px}
+.chat-input button{padding:18px 22px;border-radius:16px;border:none;background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;font-weight:900;cursor:pointer;font-size:18px}
+.mic-btn{background:linear-gradient(135deg,#ef4444,#f97316);border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer} /* Bouton micro rouge */
+.mic-btn.recording{animation:micPulse 1s infinite} /* Animation quand ça écoute */
+.speak-btn{font-size:14px;padding:8px 12px;background:var(--green);border-radius:10px;margin-left:8px;cursor:pointer} /* Bouton 🔊 */
+
+  /* ========== JEU ========== */
+.game-wrap{text-align:center}
+  canvas{width:100%;max-width:1100px;height:240px;background:linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.05));border-radius:24px;display:block;margin:auto;border:3px solid var(--glass-border);box-shadow:var(--shadow-lg)}
+.sol{height:4px;background:linear-gradient(90deg,#8b5cf6,#ec4899);max-width:1100px;margin:auto;border-radius:4px;box-shadow:0 0 20px #ec4899}
+  #gameStart{display:block;margin:28px auto 0;padding:18px 40px;border-radius:16px;border:none;background:linear-gradient(135deg,#10b981,#34d399);color:#fff;font-weight:900;cursor:pointer;font-size:18px}
+  #score{font-weight:900;font-size:28px;margin-top:20px;background:linear-gradient(135deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+  /* ========== FOOTER = SIGNATURE CEO ========== */
+  footer{background:rgba(0,0,0,.6);backdrop-filter:blur(30px);color:#94a3b8;padding:100px 0 50px;margin-top:120px;font-size:16px;border-top:1px solid var(--glass-border)}
+  footer.grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:100px} /* 3 colonnes */
+  footer h4{color:#fff;margin-bottom:24px;font-size:20px;font-weight:900}
+  footer a{color:#94a3b8;text-decoration:none;display:block;margin:14px 0;font-weight:600;transition:.3s}
+  footer a:hover{color:#f472b6;transform:translateX(6px)} /* Le lien bouge à droite au hover */
+.momo{background:rgba(37,211,102,.15);padding:16px 20px;border-radius:16px;margin-top:16px;border:1px solid rgba(37,211,102,.4)} /* Bloc MoMo vert */
+.momo strong{color:var(--wa);font-size:18px}
+.signature{grid-column:1/-1;text-align:center;padding-top:50px;border-top:1px solid #1e293b;margin-top:50px;font-weight:800;font-size:18px} /* Signature CEO */
+.signature strong{color:#fff;font-size:20px;background:linear-gradient(90deg,#a78bfa,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent} /* Nom en dégradé */
+
+  @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center;padding:100px 0}.hero h1{font-size:44px}.grid-3,.testimonials{grid-template-columns:1fr}footer.grid{grid-template-columns:1fr;gap:60px;text-align:center}} /* Version téléphone */
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#g)"/><defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24"><stop offset="0%" stop-color="#00d9ff"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs></svg>
-    ELI10 ACADEMY
+<!--
+
+= 3. PARTIE BODY = LE CONTENU DU SITE =
+
+Ici c’est tout ce que l’utilisateur voit à l’écran.
+-->
+
+<!-- VIDÉO DE FOND : PEXELS LIBRE DE DROIT -->
+<video id="bgVideo" autoplay loop muted playsinline>
+  <source src="https://videos.pexels.com/video-files/3190772/3190772-sd_640_360_25fps.mp4" type="video/mp4">
+</video>
+
+<button id="installBtn" class="btn install">📱 Installer ELI10 Academy</button> <!-- Bouton PWA -->
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">🚀 ELI10 Academy</div>
+      <button onclick="inscription()" class="btn primary">Essai Gratuit 7 Jours</button>
+    </nav>
   </div>
+</header>
+
+<section class="hero container">
   <div>
-    <a href="#home">Accueil</a>
-    <a href="#offre">Programme</a>
-    <a href="#ia">Cours IA</a>
-    <a href="#jeu">Jeu</a>
-    <a href="#contact">Contact</a>
+    <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">IA</span><span class="tag">Jeu</span></div>
+    <h1>Deviens <span>Développeur Web</span> en 11 Leçons</h1>
+    <p>La formation 100% pratique N°1 au Bénin. De Zéro à Pro avec l’IA Destin. Accès essai gratuit 7 jours. Sans carte bancaire. Résultat garanti.</p>
+    <button onclick="inscription()" class="btn primary" style="font-size:19px;padding:20px 40px">🔥 Commencer Maintenant →</button>
   </div>
-</nav>
-
-<!-- 1. HERO -->
-<section id="home" class="hero">
-  <div class="photo"><img src="https://i.imgur.com/An8DyAG.jpg" alt="Destin Cédric"></div>
-  <div>
-    <span class="badge orange">ESSAI 7 JOURS : CATÉGORIE 1 LEÇON 1 SEULEMENT</span>
-    <h1>11 Leçons. 6 Catégories. <span>Dev Web + Jeu</span></h1>
-    <p>Inscris-toi gratuitement. 7 jours pour faire <strong>Leçon 1: HTML de Base</strong>.</p>
-    <p>Pour débloquer les 10 autres leçons dont "Création de Jeu": <strong>15 000 FCFA</strong> au <strong>01 92 88 18 10</strong></p>
-    <button onclick="openInscription()" class="btn primary" style="margin-top:24px">Commencer l’Essai Gratuit →</button>
-  </div>
+  <div><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80" alt="Code Pro ELI10"></div> <!-- IMAGE 4K CODE -->
 </section>
 
-<!-- 2. PROGRAMME 11 LEÇONS 6 CATÉGORIES -->
-<section id="offre">
-  <h2>Programme ELI10 : 11 Leçons</h2>
-  <div class="card">
-    <div class="categorie">
-      <h4>CATÉGORIE 1: LES BASES HTML</h4>
-      <p>✅ Leçon 1: HTML de Base - GRATUIT 7 JOURS</p>
-      <p class="locked">🔒 Leçon 2: Balises Avancées + Images</p>
-    </div>
-    <div class="categorie locked">
-      <h4>CATÉGORIE 2: LE STYLE CSS</h4>
-      <p>🔒 Leçon 3: CSS de Base + Couleurs</p>
-      <p>🔒 Leçon 4: Flexbox + Centrer</p>
-    </div>
-    <div class="categorie locked">
-      <h4>CATÉGORIE 3: L’ACTION JS</h4>
-      <p>🔒 Leçon 5: JS de Base + Alert</p>
-      <p>🔒 Leçon 6: Bouton + Click</p>
-    </div>
-    <div class="categorie locked">
-      <h4>CATÉGORIE 4: PROJETS RÉELS</h4>
-      <p>🔒 Leçon 7: Landing Page</p>
-      <p>🔒 Leçon 8: Boutique WhatsApp</p>
-    </div>
-    <div class="categorie locked">
-      <h4>CATÉGORIE 5: EXPERT + IA</h4>
-      <p>🔒 Leçon 9: Portfolio + Hébergement</p>
-      <p>🔒 Leçon 10: Vendre avec l’IA</p>
-    </div>
-    <div class="categorie locked">
-      <h4>CATÉGORIE 6: CRÉATION DE JEU 🔥</h4>
-      <p>🔒 Leçon 11: Créer ton propre Jeu Canvas - INCLUS 15K</p>
-    </div>
-  </div>
-  <div class="card" style="margin-top:24px;text-align:center">
-    <h3>💰 Débloquer les 10 Leçons restantes</h3>
-    <div class="prix-box">15 000 FCFA</div>
-    <p><strong>Dépôt: 01 92 88 18 10</strong> | <strong>WhatsApp: 01 40 31 18 36</strong></p>
-  </div>
-</section>
-
-<!-- 3. IA MENTOR COURS -->
-<section id="ia">
-  <h2>Assistant ELI10 - Cours Interactif 🤖</h2>
-  <p>Tape: inscrire, lecon 1, lecon 11, categorie</p>
-  <div class="card">
-    <div class="chat-box" id="chatBox"><div class="msg bot">Salut! Essai 7 jours = Catégorie 1 Leçon 1 seulement.</div></div>
-    <div style="display:flex;gap:12px"><input id="chatInput" placeholder="Ex: Je veux la leçon 11" onkeydown="if(event.key==='Enter')sendMsg()"><button class="btn primary" onclick="sendMsg()">Envoyer</button></div>
-  </div>
-</section>
-
-<!-- 4. JEU ELI10 BIKE DASH -->
-<section id="jeu">
-  <h2>ELI10 Bike Dash 🚴‍♂️ Détends-toi entre 2 leçons</h2>
-  <div class="card game-wrap">
-    <canvas id="game"></canvas>
-    <button id="gameStart" class="btn green">JOUER</button>
-    <div id="gameScore" style="text-align:center;margin-top:12px;font-weight:700"></div>
-  </div>
-</section>
-
-<!-- 5. CONTACT -->
-<section id="contact">
-  <h2>Contact Direct</h2>
-  <div class="grid" style="grid-template-columns:repeat(2,1fr);text-align:center">
-    <div class="card">
-      <h3>📱 WhatsApp</h3>
-      <p><strong>01 40 31 18 36</strong></p>
-      <a href="https://wa.me/2290140311836" class="btn wa" style="margin-top:10px">Écrire</a>
-    </div>
-    <div class="card">
-      <h3>💰 Dépôt</h3>
-      <p><strong>01 92 88 18 10</strong></p>
-      <p>Mobile Money - Destin Cédric</p>
-    </div>
-  </div>
-  <div class="cta-final">
-    Avec Destin Service (Elite Dix) vous allez de l’avant dans la programmation. 🚀
-  </div>
-  <div class="sticker">😁</div>
-</section>
-
-<footer>© 2026 ELI10 Academy | WhatsApp: 01 40 31 18 36 | Dépôt: 01 92 88 18 10</footer>
-
-<!-- MODAL INSCRIPTION -->
-<div class="modal" id="inscriptionModal">
-  <div class="modal-content" style="padding:24px">
-    <button onclick="closeInscription()" style="float:right;background:none;border:none;color:#fff;font-size:24px;cursor:pointer">×</button>
-    <h2 style="text-align:left;margin-bottom:12px">Essai Gratuit 7 Jours</h2>
-    <p style="margin-bottom:20px"><strong>Catégorie 1 - Leçon 1 seulement.</strong> Formation 11 Leçons: <strong>15 000 FCFA</strong></p>
-    <form id="inscriptionForm" onsubmit="handleInscription(event)">
-      <div class="form-group"><label>Nom Complet *</label><input type="text" id="nom" required></div>
-      <div class="form-group"><label>Adresse Email *</label><input type="email" id="email" required></div>
-      <div class="form-group"><label>Numéro WhatsApp *</label><input type="tel" id="phone" required></div>
-      <button type="submit" class="btn primary" style="width:100%">Accéder à la Leçon 1</button>
-    </form>
-  </div>
+<div class="container countdown">
+  ⏰ OFFRE LIMITÉE : 15 000 FCFA seulement jusqu’au 31 Décembre 2025
+  <br><span>Plus que 23 places disponibles</span>
 </div>
 
+<!-- PUB 1 GOOGLE -->
+<div class="container ad-box"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-TA_ID_ICI" data-ad-slot="1111" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+
+<section>
+  <div class="container">
+    <h2>Le Programme Complet ELI10</h2>
+    <div class="grid-3">
+      <div class="card"><img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&q=80" alt="HTML"><div class="content"><span class="badge">MODULE 1</span><h3>HTML Fondamentaux</h3><p>✅ Leçon 1 : Structure de base - Gratuit 7j</p><p>🔒 Leçon 2 : Balises sémantiques</p></div></div>
+      <div class="card locked"><img src="https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=400&q=80" alt="CSS"><div class="content"><span class="badge">MODULE 2</span><h3>CSS Moderne</h3><p>🔒 Leçon 3 : Flexbox & Grid</p><p>🔒 Leçon 4 : Animations</p></div></div>
+      <div class="card locked"><img src="https://images.unsplash.com/photo-1623282033815-40b05d96c903?w=400&q=80" alt="JS"><div class="content"><span class="badge">MODULE 3</span><h3>JavaScript</h3><p>🔒 Leçon 5 : Logique & Fonctions</p><p>🔒 Leçon 6 : DOM & Events</p></div></div>
+      <div class="card locked"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&q=80" alt="IA"><div class="content"><span class="badge">MODULE 4</span><h3>IA & API</h3><p>🔒 Leçon 7 : Intégrer une IA</p><p>🔒 Leçon 8 : API REST</p></div></div>
+      <div class="card locked"><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&q=80" alt="Projet"><div class="content"><span class="badge">MODULE 5</span><h3>Projets Reels</h3><p>🔒 Leçon 9 : Portfolio Pro</p><p>🔒 Leçon 10 : E-commerce</p></div></div>
+      <div class="card locked"><img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=400&q=80" alt="Jeu"><div class="content"><span class="badge">MODULE 6 BONUS</span><h3>Créer ton Jeu 🚴‍♂️</h3><p>🔒 Leçon 11 : Jeu Vidéo Complet</p></div></div>
+    </div>
+
+    <!-- TÉMOIGNAGES AVEC PHOTOS -->
+    <h2 style="margin-top:100px">Ils ont réussi avec ELI10</h2>
+    <div class="testimonials">
+      <div class="testimonial"><div class="head"><img src="https://i.pravatar.cc/60?img=1"><div><div class="name">Kouassi M.</div><div class="role">Dev Frontend</div></div></div><p>“Grâce à ELI10 j’ai décroché mon premier contrat à 200 000 FCFA en 3 mois!”</p><div class="stars">★★★</div></div>
+      <div class="testimonial"><div class="head"><img src="https://i.pravatar.cc/60?img=5"><div><div class="name">Fatou A.</div><div class="role">Freelance</div></div></div><p>“L’IA Destin explique mieux que YouTube. Tout est clair et pratique.”</p><div class="stars">★★★</div></div>
+      <div class="testimonial"><div class="head"><img src="https://i.pravatar.cc/60?img=8"><div><div class="name">Junior D.</div><div class="role">Étudiant</div></div></div><p>“15 000 FCFA c’est rien pour ce que j’ai appris. Meilleur investissement.”</p><div class="stars">★★★</div></div>
+    </div>
+
+    <div class="pricing card" style="margin-top:70px">
+      <div style="font-weight:900;font-size:20px">🔥 Accès à Vie Complet</div>
+      <div class="prix">15 000 <span>FCFA</span></div>
+      <div class="prix.info">
+        💳 Paiement Mobile Money : <strong>01 92 88 18 10</strong><br>
+        📱 WhatsApp Preuve : <strong>01 40 31 18 36</strong><br>
+        ✅ Déblocage immédiat après paiement
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Assistant IA Officiel : Destin 🎤</h2>
+    <div class="chat-wrap">
+      <div class="chat-head"><img src="https://i.imgur.com/An8DyAG.jpg"><div><div class="name">Destin</div><div class="status">En ligne 24/7</div></div></div>
+      <div class="chat-box" id="chatBox"></div>
+      <div class="chat-input"><input id="chatInput" placeholder="Tape ou parle à Destin..." onkeydown="if(event.key==='Enter')send()"><button onclick="send()">➤</button><div class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUB 2 GOOGLE -->
+<div class="container ad-box"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-TA_ID_ICI" data-ad-slot="2222" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+
+<section><div class="container"><h2>Laboratoire : ELI10 Bike Dash 🚴‍♂️</h2><div class="game-wrap"><canvas id="game"></canvas><div class="sol"></div><button id="gameStart">JOUER MAINTENANT</button><div id="score">Score: 0</div><div class="hint">ESPACE ou TAP pour sauter. Timer ton saut!</div></div></div></section>
+
+<footer>
+  <div class="container grid">
+    <div><h4>🚀 ELI10 Academy</h4><p>Première Académie 100% Pratique pour devenir Développeur Web au Bénin. Avec Destin Service, vous allez de l’avant. 😁</p><div class="momo"><strong>💰 MOBILE MONEY MTN/MOOV</strong><br>Numéro Dépôt : 01 92 88 18 10<br>Montant : 15 000 FCFA</div></div>
+    <div><h4>Navigation</h4><a href="#">Programme</a><a href="#">Destin IA</a><a href="#">Jeu Bike Dash</a><a href="#">Témoignages</a></div>
+    <div><h4>Contact Direct</h4><a href="https://wa.me/2290140311836" target="_blank">📱 WhatsApp : 01 40 31 18 36</a><a href="tel:+2290140311836">📞 Appel : 01 40 31 18 36</a><a href="tel:+2290192881810">💳 MoMo : 01 92 88 18 10</a></div>
+    <div class="signature"><strong>Créé et Développé par Destin Cédric</strong><br>Né le 1er Juin 2010 | Abomey-Calavi, Bénin | © 2026 ELI10 Academy</div>
+  </div>
+</footer>
+
 <script>
-// ===== GESTION INSCRIPTION =====
-let userInscrit = false;
-let leconMax = 1;
-const inscriptionModal = document.getElementById('inscriptionModal');
-function openInscription(){inscriptionModal.classList.add('active');}
-function closeInscription(){inscriptionModal.classList.remove('active');}
-function handleInscription(e){
-  e.preventDefault();
-  const nom = document.getElementById('nom').value;
-  userInscrit = true; leconMax = 1;
-  closeInscription();
-  addMsg(`Bienvenue ${nom}! ✅ Essai 7 jours activé.`, 'bot', chatBox);
-  addMsg(`Tu as accès à: CATÉGORIE 1 - LEÇON 1 UNIQUEMENT. Tape "lecon 1"`, 'bot', chatBox);
-  addMsg(`Pour débloquer jusqu’à Leçon 11 "Création de Jeu": Dépôt 15 000 FCFA au 01 92 88 18 10`, 'bot', chatBox);
+/*
+
+= 4. PARTIE JAVASCRIPT = LE CERVEAU DU SITE =
+
+Ici c’est tout ce qui bouge : PWA, IA, Jeu, Micro.
+*/
+
+/* ========== 1. PWA INSTALL = POUR INSTALLER L'APPLI ========== */
+let deferredPrompt;const installBtn=document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display='block';}); /* Android dit : tu peux installer */
+installBtn.onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;installBtn.style.display='none';}}; /* Quand tu cliques */
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');} /* Le fichier qui rend ça hors-ligne */
+
+/* ========== 2. IA DESTIN V13.0 VOICE + MODE FACILE ========== */
+let inscrit=false;let maxLecon=1; /* Contrôle d’accès */
+const COURS={1:`LEÇON 1 HTML [ESSAI 7 JOURS GRATUIT]\n<!DOCTYPE html>\n<html>\n <body><h1>Salut ELI10</h1></body>\n</html>`,2:`🔒 Paye 15 000 FCFA au 01 92 88 18 10.`,3:`🔒 Paye 15 000 FCFA.`,4:`🔒 Paye 15 000 FCFA.`,5:`🔒 Paye 15 000 FCFA.`,6:`🔒 Paye 15 000 FCFA.`,7:`🔒 Paye 15 000 FCFA.`,8:`🔒 Paye 15 000 FCFA.`,9:`🔒 Paye 15 000 FCFA.`,10:`🔒 Paye 15 000 FCFA.`,11:`🔒 Leçon 11: Jeu. Paye 15 000 FCFA.`};
+const DB={'prix':'15 000 FCFA','depot':'01 92 88 18 10','whatsapp':'01 40 31 18 36','destin':'Je suis Destin, ton assistant IA.','cedric':'Destin Cédric, Né le 1er Juin 2010','lecon 1':COURS[1]};
+for(let i=2;i<=11;i++){DB[`lecon ${i}`]=COURS[i];} /* On remplit la base */
+
+const chatBox=document.getElementById('chatBox');
+function add(t,w,canSpeak=false){const d=document.createElement('div');d.className='msg '+w;const avatar=w==='bot'?'https://i.imgur.com/An8DyAG.jpg':'https://i.pravatar.cc/44';const speakBtn=canSpeak?`<span class="speak-btn" onclick="speak('${t.replace(/'/g,"\\'")}')">🔊</span>`:``;d.innerHTML=`<img src="${avatar}" class="avatar"><div class="bubble">${t.replace(/\n/g,'<br>')}${speakBtn}</div>`;chatBox.appendChild(d);chatBox.scrollTop=chatBox.scrollHeight;}
+add('Bonjour! Je suis Destin 🤖\nTape "lecon 1" ou appuie 🎤 pour parler.','bot',true);
+
+/* ========== MODE EXPLICATION FACILE = POUR LES DÉBUTANTS ========== */
+function expliquerFacile(sujet){
+  const explications={
+    'html':'HTML c’est comme le squelette de ta maison. <h1> c’est le titre, <p> c’est les murs avec du texte.',
+    'css':'CSS c’est la peinture et la décoration. Ça rend ta maison belle.',
+    'javascript':'JavaScript c’est l’électricité. Ça fait bouger les choses quand tu cliques.',
+    'dom':'Le DOM c’est l’arbre de ta maison. JS peut ajouter une porte.',
+    'api':'API c’est comme demander à manger au restaurant. Ton site demande des infos à un autre site.'
+  };
+  for(let k in explications){if(sujet.includes(k))return explications[k];}
+  return "Je suis Destin. Dis-moi le mot exact : html, css, javascript, dom, api";
 }
-window.openInscription=openInscription; window.closeInscription=closeInscription;
 
-// ===== 11 LEÇONS EN 6 CATÉGORIES =====
-const COURS = {
- 1: `CATÉGORIE 1 - LEÇON 1: HTML DE BASE [GRATUIT 7 JOURS]
-<html>, <head>, <body>, <h1>, <p>
-EXERCICE: <h1>Salut, je suis Destin</h1>
-Fin de l’essai. Pour Leçon 2: 15 000 FCFA au 01 92 88 18 10`,
-
- 2: `CATÉGORIE 1 - LEÇON 2: BALISES AVANCÉES 🔒 Paye 15 000 FCFA.`,
-
- 3: `CATÉGORIE 2 - LEÇON 3: CSS DE BASE 🔒 Paye 15 000 FCFA.`,
-
- 4: `CATÉGORIE 2 - LEÇON 4: FLEXBOX 🔒 Paye 15 000 FCFA.`,
-
- 5: `CATÉGORIE 3 - LEÇON 5: JS DE BASE 🔒 Paye 15 000 FCFA.`,
-
- 6: `CATÉGORIE 3 - LEÇON 6: BOUTON CLICK 🔒 Paye 15 000 FCFA.`,
-
- 7: `CATÉGORIE 4 - LEÇON 7: LANDING PAGE 🔒 Paye 15 000 FCFA.`,
-
- 8: `CATÉGORIE 4 - LEÇON 8: BOUTIQUE WHATSAPP 🔒 Paye 15 000 FCFA.`,
-
- 9: `CATÉGORIE 5 - LEÇON 9: PORTFOLIO 🔒 Paye 15 000 FCFA.`,
-
-10: `CATÉGORIE 5 - LEÇON 10: VENDRE AVEC L’IA 🔒 Paye 15 000 FCFA.`,
-
-11: `CATÉGORIE 6 - LEÇON 11: CRÉATION DE JEU 🔒
-Tu vas coder ton propre jeu Canvas comme ELI10 Bike Dash.
-Canvas + Boucle de jeu + Saut + Score + Collisions.
-INCLUS dans les 15 000 FCFA au 01 92 88 18 10.`
-};
-
-const IA_DB = {
-  'prix': 'Formation 11 Leçons: 15 000 FCFA. Essai = Catégorie 1 Leçon 1 gratuite 7 jours.',
-  '15': 'Oui 15 000 FCFA au 01 92 88 18 10 pour débloquer jusqu’à Leçon 11.',
-  'inscrire': 'Clique "Commencer l’Essai Gratuit". Tu auras Leçon 1 pendant 7 jours.',
-  'depot': 'Dépôt Mobile Money: 01 92 88 18 10. Nom: Destin Cédric.',
-  'whatsapp': 'WhatsApp Destin: 01 40 31 18 36',
-  'categorie': '6 Catégories: 1.HTML 2.CSS 3.JS 4.Projets 5.Expert 6.Jeu. 11 leçons au total.',
-  'lecon 1': COURS[1]
-};
-for(let i=2;i<=11;i++){ IA_DB[`lecon ${i}`] = COURS[i]; }
-
-const chatBox = document.getElementById('chatBox');
-const chatInput = document.getElementById('chatInput');
-
-function sendMsg(){
-  const txt = chatInput.value.toLowerCase().trim();
-  if(!txt) return;
-  addMsg(txt, 'user', chatBox);
-  let rep = 'Tape: inscrire, lecon 1, categorie, prix';
-
-  let numLecon = txt.match(/lecon\s*(\d+)/);
-  if(numLecon){
-    let n = parseInt(numLecon[1]);
-    if(!userInscrit){ rep = '🔒 Inscris-toi d’abord pour Leçon 1 gratuite.'; }
-    else if(n > leconMax){ rep = `🔒 CATÉGORIE BLOQUÉE. Essai = Leçon 1 seulement. Paye 15 000 FCFA au 01 92 88 18 10.`; }
-    else{ rep = COURS[n]; }
-  } else {
-    for(let key in IA_DB){ if(txt.includes(key)){ rep = IA_DB[key]; break; } }
-  }
-  setTimeout(()=>addMsg(rep,'bot', chatBox), 800);
-  chatInput.value='';
+function send(){
+  const t=chatInput.value.toLowerCase().trim();if(!t)return;add(t,'user');
+  let r='Je suis Destin. Tape : lecon 1, prix, whatsapp';
+  let n=t.match(/lecon\s*(\d+)/);
+  if(n){n=+n[1];if(!inscrit){r='🔒 Inscris-toi à l’essai gratuit d’abord.'}else if(n>maxLecon){r='🔒 Débloque tout pour 15 000 FCFA au 01 92 88 18 10.'}else{r=COURS[n];}}
+  else{if(t.includes('c\'est quoi')||t.includes('explique')){r=expliquerFacile(t);}else{for(let k in DB){if(t.includes(k)){r=DB[k];break;}}}}
+  setTimeout(()=>add(r,'bot',true),700);chatInput.value='';
 }
-function addMsg(t,who,box){
-  const div = document.createElement('div');
-  div.className = 'msg ' + (who==='user'?'user':'bot');
-  div.innerHTML = t + `<span class="time">${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</span>`;
-  box.appendChild(div);
-  box.scrollTop = box.scrollHeight;
-}
-window.sendMsg=sendMsg;
+function inscription(){inscrit=true;maxLecon=1;add('✅ Inscription validée! Tu as la Leçon 1 pendant 7 jours.','bot',true);}
 
-// ===== JEU VELO ELI10 =====
-const canvas = document.getElementById('game');
-const ctx = canvas.getContext('2d');
-const gameStartBtn = document.getElementById('gameStart');
-const gameScoreEl = document.getElementById('gameScore');
-canvas.width = 700; canvas.height = 340;
-let bike, obstacles, score, speed, playing, nightMode;
-function resetGame(){
-  bike = {x: 100, y: 260, vy: 0, jumping: false, angle: 0};
-  obstacles = []; score = 0; speed = 5; playing = true; nightMode = false;
-  gameStartBtn.style.display='none'; gameScoreEl.innerText='Score: 0';
-  requestAnimationFrame(gameLoop);
-}
-function jump(){ if(!bike.jumping){ bike.vy = -14; bike.jumping = true; } }
-canvas.addEventListener('click', jump);
-document.addEventListener('keydown', e=>{if(e.code==='Space')jump()});
-function drawBike(){
-  ctx.save(); ctx.translate(bike.x, bike.y); ctx.rotate(bike.angle);
-  ctx.fillStyle='rgba(0,0,0,.3)'; ctx.beginPath();ctx.ellipse(0,25,20,5,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#222'; ctx.beginPath();ctx.arc(-18,20,12,0,Math.PI*2);ctx.fill(); ctx.beginPath();ctx.arc(18,20,12,0,Math.PI*2);ctx.fill();
-  ctx.strokeStyle='#00d9ff'; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(-18,20); ctx.lineTo(0,5); ctx.lineTo(18,20); ctx.lineTo(0,5); ctx.lineTo(-8,-12); ctx.stroke();
-  ctx.fillStyle='#8b5cf6'; ctx.beginPath();ctx.arc(-8,-22,10,0,Math.PI*2);ctx.fill(); ctx.fillRect(-12,-15,8,15);
-  ctx.restore();
-}
-function gameLoop(){
-  if(!playing) return;
-  if(nightMode){ctx.fillStyle='#0a0f1a';}else{ctx.fillStyle='#87CEEB';}
-  ctx.fillRect(0,0,700,340);
-  if(nightMode){ctx.fillStyle='#eee';ctx.beginPath();ctx.arc(620,60,25,0,Math.PI*2);ctx.fill();}
-  else{ctx.fillStyle='#FFD700';ctx.beginPath();ctx.arc(620,60,25,0,Math.PI*2);ctx.fill();}
-  if(nightMode){ctx.fillStyle='#2a2a3a';}else{ctx.fillStyle='#3CB371';}
-  ctx.fillRect(0,270,700,70);
-  ctx.fillStyle='#2f2f2f'; for(let i=0;i<700;i+=40){ctx.fillRect((i - Date.now()*0.07 % 40),295,20,5);}
-  bike.vy += 0.9; bike.y += bike.vy; bike.angle = bike.vy*0.02;
-  if(bike.y>=260){bike.y=260; bike.vy=0; bike.jumping=false; bike.angle=0;}
-  if(Math.random()<0.025){ obstacles.push({x:700,y:270-35,w:35,h:35}); }
-  obstacles.forEach((o,i)=>{
-    o.x-=speed;
-    ctx.fillStyle='#ff3b30'; ctx.fillRect(o.x,o.y,o.w,o.h);
-    ctx.fillStyle='#fff'; ctx.font='bold 20px Arial'; ctx.fillText('!', o.x+o.w/2-5, o.y+o.h/2+7);
-    if(o.x<bike.x+20 && o.x+o.w>bike.x-20 && bike.y+15>o.y){ playing=false; gameStartBtn.innerText='💥 REJOUER'; gameStartBtn.style.display='block'; }
-    if(o.x<-50){ obstacles.splice(i,1); score++; if(score===50)nightMode=true; speed+=0.08; }
-  });
-  drawBike();
-  gameScoreEl.innerText='Score: '+score + (nightMode?' | 🌙 MODE NUIT':'');
-  requestAnimationFrame(gameLoop);
-}
-gameStartBtn.onclick = resetGame;
-</script>
-</body>
-</html>
+/* ========== TTS = L'IA PARLE ========== */
+function speak(text){const synth=window.speechSynthesis;const utter=new SpeechSynthesisUtterance(text);utter.lang='fr-FR';utter.rate=0.9;synth.speak(utter);
     
   </body>
   
