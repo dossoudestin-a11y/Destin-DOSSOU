@@ -13,145 +13,324 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>ELI10 Bike Dash</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELI10 Academy | 11 Leçons + Jeu - 15 000 FCFA</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;touch-action:none}
-  body{background:#0f1117;color:#fff;font-family:system-ui;overflow:hidden}
-  canvas{display:block;background:linear-gradient(#87CEEB 0%, #87CEEB 70%, #3CB371 70%)}
-  #ui{position:absolute;top:10px;left:0;right:0;text-align:center;pointer-events:none}
-  #score{font-size:28px;font-weight:800;text-shadow:2px 2px #000}
-  #start{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#25D366;color:#000;border:none;padding:20px 40px;border-radius:16px;font-size:20px;font-weight:800;cursor:pointer}
+  :root{--bg:#0a0c10;--card:#12151c;--text:#f5f7fa;--muted:#9aa3b2;--accent:#00d9ff;--accent2:#8b5cf6;--green:#22c55e;--wa:#25D366}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui;background:var(--bg);color:var(--text);line-height:1.7}
+  section{padding:80px 20px;max-width:1100px;margin:auto}
+  h1{font-size:52px;line-height:1.1;font-weight:900} h2{font-size:36px;margin-bottom:24px;font-weight:800;text-align:center}
+  h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  p{color:var(--muted);font-size:18px}
+.btn{padding:16px 32px;border-radius:14px;text-decoration:none;font-weight:800;display:inline-block;transition:.3s;cursor:pointer;border:none;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#000}
+.btn.green{background:var(--green);color:#000}
+.btn.wa{background:var(--wa);color:#000}
+.btn:hover{transform:translateY(-3px)}
+.grid{display:grid;gap:24px}
+.card{background:var(--card);padding:28px;border-radius:20px;border:1px solid #1f2330}
+  nav{position:sticky;top:0;background:rgba(10,12,16,.85);backdrop-filter:blur(12px);padding:14px 20px;border-bottom:1px solid #1f2330;z-index:50;display:flex;justify-content:space-between;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;margin:0 14px;font-weight:700}
+  nav a:hover{color:var(--accent)}
+.logo{font-size:24px;font-weight:900;display:flex;align-items:center;gap:10px}
+.logo svg{width:32px;height:32px}
+.hero{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center;min-height:90vh}
+  @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}}
+.photo{border-radius:28px;overflow:hidden;box-shadow:0 25px 70px rgba(139,92,246,.35)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.chat-box{background:#0b141a;border-radius:14px;padding:18px;height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;margin:18px 0;border:1px solid #1f2330}
+.msg{background:#1f2c33;padding:12px 16px;border-radius:12px;max-width:85%;position:relative;white-space:pre-wrap}
+.msg.user{align-self:flex-end;background:#005c4b;color:#e9edef}
+.msg.bot{align-self:flex-start;background:#202c33;color:#e9edef}
+.msg.time{font-size:11px;opacity:.6;margin-left:10px}
+  input{width:100%;padding:14px;border-radius:12px;border:1px solid #2a2f3f;background:#0a0c10;color:#fff;font-size:16px}
+  canvas{width:100%;max-width:700px;height:340px;background:linear-gradient(#87CEEB 0%, #87CEEB 70%, #3CB371 70%);border-radius:16px;display:block;margin:auto}
+  #gameStart{position:absolute;transform:translate(-50%,-50%);left:50%;top:50%;z-index:10}
+.game-wrap{position:relative}
+.badge{display:inline-block;background:rgba(0,217,255,.1);border:1px solid rgba(0,217,255,.3);color:var(--accent);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:12px}
+.badge.green{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:var(--green)}
+.badge.orange{background:rgba(251,146,60,.1);border-color:rgba(251,146,60,.3);color:#fb923c}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal.active{display:flex}
+.modal-content{width:100%;max-width:420px;background:#0b141a;border-radius:20px;overflow:hidden;border:1px solid #2a2f3f}
+.form-group{margin-bottom:16px;text-align:left}
+.form-group label{display:block;margin-bottom:6px;font-size:14px;color:var(--muted)}
+.prix-box{font-size:42px;font-weight:900;color:var(--green);margin:10px 0}
+.categorie{margin-bottom:20px;padding:16px;background:#1a1f2e;border-radius:12px;border-left:4px solid var(--accent)}
+.categorie h4{color:var(--accent);margin-bottom:8px}
+.locked{opacity:.5}
+  footer{text-align:center;padding:50px 20px;color:#666;font-size:14px;border-top:1px solid #1f2330}
+.cta-final{font-size:22px;font-weight:900;text-align:center;margin-top:30px;color:var(--green)}
+.sticker{font-size:50px;text-align:center;margin-top:10px}
 </style>
 </head>
 <body>
-  <div id="ui"><div id="score">Score: 0</div></div>
-  <button id="start">🚴 JOUER</button>
-  <canvas id="game"></canvas>
+
+<nav>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="url(#g)"/><defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24"><stop offset="0%" stop-color="#00d9ff"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs></svg>
+    ELI10 ACADEMY
+  </div>
+  <div>
+    <a href="#home">Accueil</a>
+    <a href="#offre">Programme</a>
+    <a href="#ia">Cours IA</a>
+    <a href="#jeu">Jeu</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- 1. HERO -->
+<section id="home" class="hero">
+  <div class="photo"><img src="https://i.imgur.com/An8DyAG.jpg" alt="Destin Cédric"></div>
+  <div>
+    <span class="badge orange">ESSAI 7 JOURS : CATÉGORIE 1 LEÇON 1 SEULEMENT</span>
+    <h1>11 Leçons. 6 Catégories. <span>Dev Web + Jeu</span></h1>
+    <p>Inscris-toi gratuitement. 7 jours pour faire <strong>Leçon 1: HTML de Base</strong>.</p>
+    <p>Pour débloquer les 10 autres leçons dont "Création de Jeu": <strong>15 000 FCFA</strong> au <strong>01 92 88 18 10</strong></p>
+    <button onclick="openInscription()" class="btn primary" style="margin-top:24px">Commencer l’Essai Gratuit →</button>
+  </div>
+</section>
+
+<!-- 2. PROGRAMME 11 LEÇONS 6 CATÉGORIES -->
+<section id="offre">
+  <h2>Programme ELI10 : 11 Leçons</h2>
+  <div class="card">
+    <div class="categorie">
+      <h4>CATÉGORIE 1: LES BASES HTML</h4>
+      <p>✅ Leçon 1: HTML de Base - GRATUIT 7 JOURS</p>
+      <p class="locked">🔒 Leçon 2: Balises Avancées + Images</p>
+    </div>
+    <div class="categorie locked">
+      <h4>CATÉGORIE 2: LE STYLE CSS</h4>
+      <p>🔒 Leçon 3: CSS de Base + Couleurs</p>
+      <p>🔒 Leçon 4: Flexbox + Centrer</p>
+    </div>
+    <div class="categorie locked">
+      <h4>CATÉGORIE 3: L’ACTION JS</h4>
+      <p>🔒 Leçon 5: JS de Base + Alert</p>
+      <p>🔒 Leçon 6: Bouton + Click</p>
+    </div>
+    <div class="categorie locked">
+      <h4>CATÉGORIE 4: PROJETS RÉELS</h4>
+      <p>🔒 Leçon 7: Landing Page</p>
+      <p>🔒 Leçon 8: Boutique WhatsApp</p>
+    </div>
+    <div class="categorie locked">
+      <h4>CATÉGORIE 5: EXPERT + IA</h4>
+      <p>🔒 Leçon 9: Portfolio + Hébergement</p>
+      <p>🔒 Leçon 10: Vendre avec l’IA</p>
+    </div>
+    <div class="categorie locked">
+      <h4>CATÉGORIE 6: CRÉATION DE JEU 🔥</h4>
+      <p>🔒 Leçon 11: Créer ton propre Jeu Canvas - INCLUS 15K</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:24px;text-align:center">
+    <h3>💰 Débloquer les 10 Leçons restantes</h3>
+    <div class="prix-box">15 000 FCFA</div>
+    <p><strong>Dépôt: 01 92 88 18 10</strong> | <strong>WhatsApp: 01 40 31 18 36</strong></p>
+  </div>
+</section>
+
+<!-- 3. IA MENTOR COURS -->
+<section id="ia">
+  <h2>Assistant ELI10 - Cours Interactif 🤖</h2>
+  <p>Tape: inscrire, lecon 1, lecon 11, categorie</p>
+  <div class="card">
+    <div class="chat-box" id="chatBox"><div class="msg bot">Salut! Essai 7 jours = Catégorie 1 Leçon 1 seulement.</div></div>
+    <div style="display:flex;gap:12px"><input id="chatInput" placeholder="Ex: Je veux la leçon 11" onkeydown="if(event.key==='Enter')sendMsg()"><button class="btn primary" onclick="sendMsg()">Envoyer</button></div>
+  </div>
+</section>
+
+<!-- 4. JEU ELI10 BIKE DASH -->
+<section id="jeu">
+  <h2>ELI10 Bike Dash 🚴‍♂️ Détends-toi entre 2 leçons</h2>
+  <div class="card game-wrap">
+    <canvas id="game"></canvas>
+    <button id="gameStart" class="btn green">JOUER</button>
+    <div id="gameScore" style="text-align:center;margin-top:12px;font-weight:700"></div>
+  </div>
+</section>
+
+<!-- 5. CONTACT -->
+<section id="contact">
+  <h2>Contact Direct</h2>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr);text-align:center">
+    <div class="card">
+      <h3>📱 WhatsApp</h3>
+      <p><strong>01 40 31 18 36</strong></p>
+      <a href="https://wa.me/2290140311836" class="btn wa" style="margin-top:10px">Écrire</a>
+    </div>
+    <div class="card">
+      <h3>💰 Dépôt</h3>
+      <p><strong>01 92 88 18 10</strong></p>
+      <p>Mobile Money - Destin Cédric</p>
+    </div>
+  </div>
+  <div class="cta-final">
+    Avec Destin Service (Elite Dix) vous allez de l’avant dans la programmation. 🚀
+  </div>
+  <div class="sticker">😁</div>
+</section>
+
+<footer>© 2026 ELI10 Academy | WhatsApp: 01 40 31 18 36 | Dépôt: 01 92 88 18 10</footer>
+
+<!-- MODAL INSCRIPTION -->
+<div class="modal" id="inscriptionModal">
+  <div class="modal-content" style="padding:24px">
+    <button onclick="closeInscription()" style="float:right;background:none;border:none;color:#fff;font-size:24px;cursor:pointer">×</button>
+    <h2 style="text-align:left;margin-bottom:12px">Essai Gratuit 7 Jours</h2>
+    <p style="margin-bottom:20px"><strong>Catégorie 1 - Leçon 1 seulement.</strong> Formation 11 Leçons: <strong>15 000 FCFA</strong></p>
+    <form id="inscriptionForm" onsubmit="handleInscription(event)">
+      <div class="form-group"><label>Nom Complet *</label><input type="text" id="nom" required></div>
+      <div class="form-group"><label>Adresse Email *</label><input type="email" id="email" required></div>
+      <div class="form-group"><label>Numéro WhatsApp *</label><input type="tel" id="phone" required></div>
+      <button type="submit" class="btn primary" style="width:100%">Accéder à la Leçon 1</button>
+    </form>
+  </div>
+</div>
 
 <script>
+// ===== GESTION INSCRIPTION =====
+let userInscrit = false;
+let leconMax = 1;
+const inscriptionModal = document.getElementById('inscriptionModal');
+function openInscription(){inscriptionModal.classList.add('active');}
+function closeInscription(){inscriptionModal.classList.remove('active');}
+function handleInscription(e){
+  e.preventDefault();
+  const nom = document.getElementById('nom').value;
+  userInscrit = true; leconMax = 1;
+  closeInscription();
+  addMsg(`Bienvenue ${nom}! ✅ Essai 7 jours activé.`, 'bot', chatBox);
+  addMsg(`Tu as accès à: CATÉGORIE 1 - LEÇON 1 UNIQUEMENT. Tape "lecon 1"`, 'bot', chatBox);
+  addMsg(`Pour débloquer jusqu’à Leçon 11 "Création de Jeu": Dépôt 15 000 FCFA au 01 92 88 18 10`, 'bot', chatBox);
+}
+window.openInscription=openInscription; window.closeInscription=closeInscription;
+
+// ===== 11 LEÇONS EN 6 CATÉGORIES =====
+const COURS = {
+ 1: `CATÉGORIE 1 - LEÇON 1: HTML DE BASE [GRATUIT 7 JOURS]
+<html>, <head>, <body>, <h1>, <p>
+EXERCICE: <h1>Salut, je suis Destin</h1>
+Fin de l’essai. Pour Leçon 2: 15 000 FCFA au 01 92 88 18 10`,
+
+ 2: `CATÉGORIE 1 - LEÇON 2: BALISES AVANCÉES 🔒 Paye 15 000 FCFA.`,
+
+ 3: `CATÉGORIE 2 - LEÇON 3: CSS DE BASE 🔒 Paye 15 000 FCFA.`,
+
+ 4: `CATÉGORIE 2 - LEÇON 4: FLEXBOX 🔒 Paye 15 000 FCFA.`,
+
+ 5: `CATÉGORIE 3 - LEÇON 5: JS DE BASE 🔒 Paye 15 000 FCFA.`,
+
+ 6: `CATÉGORIE 3 - LEÇON 6: BOUTON CLICK 🔒 Paye 15 000 FCFA.`,
+
+ 7: `CATÉGORIE 4 - LEÇON 7: LANDING PAGE 🔒 Paye 15 000 FCFA.`,
+
+ 8: `CATÉGORIE 4 - LEÇON 8: BOUTIQUE WHATSAPP 🔒 Paye 15 000 FCFA.`,
+
+ 9: `CATÉGORIE 5 - LEÇON 9: PORTFOLIO 🔒 Paye 15 000 FCFA.`,
+
+10: `CATÉGORIE 5 - LEÇON 10: VENDRE AVEC L’IA 🔒 Paye 15 000 FCFA.`,
+
+11: `CATÉGORIE 6 - LEÇON 11: CRÉATION DE JEU 🔒
+Tu vas coder ton propre jeu Canvas comme ELI10 Bike Dash.
+Canvas + Boucle de jeu + Saut + Score + Collisions.
+INCLUS dans les 15 000 FCFA au 01 92 88 18 10.`
+};
+
+const IA_DB = {
+  'prix': 'Formation 11 Leçons: 15 000 FCFA. Essai = Catégorie 1 Leçon 1 gratuite 7 jours.',
+  '15': 'Oui 15 000 FCFA au 01 92 88 18 10 pour débloquer jusqu’à Leçon 11.',
+  'inscrire': 'Clique "Commencer l’Essai Gratuit". Tu auras Leçon 1 pendant 7 jours.',
+  'depot': 'Dépôt Mobile Money: 01 92 88 18 10. Nom: Destin Cédric.',
+  'whatsapp': 'WhatsApp Destin: 01 40 31 18 36',
+  'categorie': '6 Catégories: 1.HTML 2.CSS 3.JS 4.Projets 5.Expert 6.Jeu. 11 leçons au total.',
+  'lecon 1': COURS[1]
+};
+for(let i=2;i<=11;i++){ IA_DB[`lecon ${i}`] = COURS[i]; }
+
+const chatBox = document.getElementById('chatBox');
+const chatInput = document.getElementById('chatInput');
+
+function sendMsg(){
+  const txt = chatInput.value.toLowerCase().trim();
+  if(!txt) return;
+  addMsg(txt, 'user', chatBox);
+  let rep = 'Tape: inscrire, lecon 1, categorie, prix';
+
+  let numLecon = txt.match(/lecon\s*(\d+)/);
+  if(numLecon){
+    let n = parseInt(numLecon[1]);
+    if(!userInscrit){ rep = '🔒 Inscris-toi d’abord pour Leçon 1 gratuite.'; }
+    else if(n > leconMax){ rep = `🔒 CATÉGORIE BLOQUÉE. Essai = Leçon 1 seulement. Paye 15 000 FCFA au 01 92 88 18 10.`; }
+    else{ rep = COURS[n]; }
+  } else {
+    for(let key in IA_DB){ if(txt.includes(key)){ rep = IA_DB[key]; break; } }
+  }
+  setTimeout(()=>addMsg(rep,'bot', chatBox), 800);
+  chatInput.value='';
+}
+function addMsg(t,who,box){
+  const div = document.createElement('div');
+  div.className = 'msg ' + (who==='user'?'user':'bot');
+  div.innerHTML = t + `<span class="time">${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</span>`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+window.sendMsg=sendMsg;
+
+// ===== JEU VELO ELI10 =====
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
-const scoreEl = document.getElementById('score');
-const startBtn = document.getElementById('start');
-
-let W, H, bike, obstacles, score, speed, playing, lastTime;
-
-function resize(){
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
+const gameStartBtn = document.getElementById('gameStart');
+const gameScoreEl = document.getElementById('gameScore');
+canvas.width = 700; canvas.height = 340;
+let bike, obstacles, score, speed, playing, nightMode;
+function resetGame(){
+  bike = {x: 100, y: 260, vy: 0, jumping: false, angle: 0};
+  obstacles = []; score = 0; speed = 5; playing = true; nightMode = false;
+  gameStartBtn.style.display='none'; gameScoreEl.innerText='Score: 0';
+  requestAnimationFrame(gameLoop);
 }
-resize();
-window.addEventListener('resize', resize);
-
-function reset(){
-  bike = {x: W*0.2, y: H*0.75, vy: 0, jumping: false};
-  obstacles = [];
-  score = 0;
-  speed = 6;
-  playing = true;
-  lastTime = 0;
-  startBtn.style.display = 'none';
-}
-
-function jump(){
-  if(!bike.jumping){
-    bike.vy = -15;
-    bike.jumping = true;
-  }
-}
-
-canvas.addEventListener('touchstart', jump);
+function jump(){ if(!bike.jumping){ bike.vy = -14; bike.jumping = true; } }
 canvas.addEventListener('click', jump);
-document.addEventListener('keydown', e => {if(e.code==='Space') jump()});
-
-function spawnObstacle(){
-  const size = 30 + Math.random()*20;
-  obstacles.push({x: W, y: H*0.75 - size + 30, w: size, h: size});
-}
-
+document.addEventListener('keydown', e=>{if(e.code==='Space')jump()});
 function drawBike(){
-  ctx.save();
-  ctx.translate(bike.x, bike.y);
-
-  // Roues
-  ctx.fillStyle = '#111';
-  ctx.beginPath();ctx.arc(-15, 15, 12, 0, Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(15, 15, 12, 0, Math.PI*2);ctx.fill();
-
-  // Cadre vélo
-  ctx.strokeStyle = '#00f5ff';
-  ctx.lineWidth = 4;
-  ctx.beginPath();
-  ctx.moveTo(-15,15); ctx.lineTo(0,0); ctx.lineTo(15,15); ctx.lineTo(0,0); ctx.lineTo(-5,-10);
-  ctx.stroke();
-
-  // Tête
-  ctx.fillStyle = '#a855f7';
-  ctx.beginPath();ctx.arc(-5,-20,8,0,Math.PI*2);ctx.fill();
-
+  ctx.save(); ctx.translate(bike.x, bike.y); ctx.rotate(bike.angle);
+  ctx.fillStyle='rgba(0,0,0,.3)'; ctx.beginPath();ctx.ellipse(0,25,20,5,0,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#222'; ctx.beginPath();ctx.arc(-18,20,12,0,Math.PI*2);ctx.fill(); ctx.beginPath();ctx.arc(18,20,12,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='#00d9ff'; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(-18,20); ctx.lineTo(0,5); ctx.lineTo(18,20); ctx.lineTo(0,5); ctx.lineTo(-8,-12); ctx.stroke();
+  ctx.fillStyle='#8b5cf6'; ctx.beginPath();ctx.arc(-8,-22,10,0,Math.PI*2);ctx.fill(); ctx.fillRect(-12,-15,8,15);
   ctx.restore();
 }
-
-function drawObstacle(o){
-  ctx.fillStyle = '#ff4757';
-  ctx.fillRect(o.x, o.y, o.w, o.h);
-  ctx.fillStyle = '#000';
-  ctx.font = '20px Arial';
-  ctx.fillText('!', o.x+o.w/2-4, o.y+o.h/2+6);
-}
-
-function loop(time){
+function gameLoop(){
   if(!playing) return;
-  const dt = time - lastTime;
-  lastTime = time;
-
-  ctx.clearRect(0,0,W,H);
-
-  // Sol qui bouge
-  ctx.fillStyle = '#2f2f2f';
-  for(let i=0; i<W; i+=40){
-    ctx.fillRect((i - time*0.1 % 40), H*0.75, 20, 5);
-  }
-
-  // Physique vélo
-  bike.vy += 0.8;
-  bike.y += bike.vy;
-  if(bike.y >= H*0.75){
-    bike.y = H*0.75;
-    bike.vy = 0;
-    bike.jumping = false;
-  }
-
-  // Spawn obstacles
-  if(Math.random() < 0.02) spawnObstacle();
-
-  // Update obstacles
-  for(let i=obstacles.length-1; i>=0; i--){
-    let o = obstacles[i];
-    o.x -= speed;
-    drawObstacle(o);
-
-    // Collision
-    if(o.x < bike.x+10 && o.x+o.w > bike.x-10 && bike.y+10 > o.y){
-      playing = false;
-      startBtn.innerText = '💥 Score: ' + score + ' | REJOUER';
-      startBtn.style.display = 'block';
-    }
-
-    if(o.x < -50) {
-      obstacles.splice(i,1);
-      score++;
-      if(score%5===0) speed += 0.5;
-    }
-  }
-
+  if(nightMode){ctx.fillStyle='#0a0f1a';}else{ctx.fillStyle='#87CEEB';}
+  ctx.fillRect(0,0,700,340);
+  if(nightMode){ctx.fillStyle='#eee';ctx.beginPath();ctx.arc(620,60,25,0,Math.PI*2);ctx.fill();}
+  else{ctx.fillStyle='#FFD700';ctx.beginPath();ctx.arc(620,60,25,0,Math.PI*2);ctx.fill();}
+  if(nightMode){ctx.fillStyle='#2a2a3a';}else{ctx.fillStyle='#3CB371';}
+  ctx.fillRect(0,270,700,70);
+  ctx.fillStyle='#2f2f2f'; for(let i=0;i<700;i+=40){ctx.fillRect((i - Date.now()*0.07 % 40),295,20,5);}
+  bike.vy += 0.9; bike.y += bike.vy; bike.angle = bike.vy*0.02;
+  if(bike.y>=260){bike.y=260; bike.vy=0; bike.jumping=false; bike.angle=0;}
+  if(Math.random()<0.025){ obstacles.push({x:700,y:270-35,w:35,h:35}); }
+  obstacles.forEach((o,i)=>{
+    o.x-=speed;
+    ctx.fillStyle='#ff3b30'; ctx.fillRect(o.x,o.y,o.w,o.h);
+    ctx.fillStyle='#fff'; ctx.font='bold 20px Arial'; ctx.fillText('!', o.x+o.w/2-5, o.y+o.h/2+7);
+    if(o.x<bike.x+20 && o.x+o.w>bike.x-20 && bike.y+15>o.y){ playing=false; gameStartBtn.innerText='💥 REJOUER'; gameStartBtn.style.display='block'; }
+    if(o.x<-50){ obstacles.splice(i,1); score++; if(score===50)nightMode=true; speed+=0.08; }
+  });
   drawBike();
-  scoreEl.innerText = 'Score: ' + score;
-  requestAnimationFrame(loop);
+  gameScoreEl.innerText='Score: '+score + (nightMode?' | 🌙 MODE NUIT':'');
+  requestAnimationFrame(gameLoop);
 }
-
-startBtn.onclick = () => {reset(); requestAnimationFrame(loop);};
+gameStartBtn.onclick = resetGame;
 </script>
 </body>
 </html>
