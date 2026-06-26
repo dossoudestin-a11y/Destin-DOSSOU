@@ -14,224 +14,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crash Academy | L'Informatique Réinvente le Monde</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Destin IA Builder | Décris ton site, je le code</title>
 <style>
-  :root{
-    --bg:#0d0d17; --card:#141428; --text:#f1f1f1; --muted:#a0a0b5; --accent:#00d9ff; --accent-2:#7f5af0; --whatsapp:#25D366;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:'Poppins', sans-serif; background:var(--bg); color:var(--text); line-height:1.8;
-  }
-  body::before{
-    content:''; position:fixed; top:0; left:0; width:100%; height:100%;
-    background: 
-      radial-gradient(800px circle at 10% 20%, #00d9ff1a, transparent),
-      radial-gradient(600px circle at 90% 80%, #7f5af01a, transparent),
-      linear-gradient(180deg, var(--bg) 0%, #0a0a12 100%);
-    z-index:-1; animation:move 20s infinite alternate;
-  }
-  @keyframes move{0%{transform:scale(1)}100%{transform:scale(1.1)}}
-
-  /* ========= HEADER ========= */
-  header{text-align:center; padding:120px 20px 100px;}
-  header h1{font-size:56px;font-weight:800;margin-bottom:20px;
-    background:linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  }
-  header p{font-size:20px;color:var(--muted);max-width:650px;margin:0 auto 40px}
-  .btn{
-    display:inline-block; background:var(--accent); color:#000; padding:16px 32px;
-    border-radius:14px; text-decoration:none; font-weight:700; font-size:17px;
-    transition:0.3s; box-shadow:0 0 20px #00d9ff55; border:none; cursor:pointer;
-  }
-  .btn:hover{background:var(--accent-2); color:#fff; transform:translateY(-4px); box-shadow:0 0 30px #7f5af055}
-  .btn-whatsapp{background:var(--whatsapp); color:#fff; box-shadow:0 0 20px #25D36655}
-  
-  .container{max-width:1200px;margin:0 auto;padding:60px 20px}
-  section{margin-bottom:80px}
-  h2{font-size:36px;text-align:center;margin-bottom:40px}
-  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:25px}
-  .card{background:var(--card); padding:25px; border-radius:20px; border:1px solid #222; transition:0.4s}
-  .card:hover{transform:translateY(-8px); border-color:var(--accent-2); box-shadow:0 10px 30px #7f5af022}
-  .card h3{color:var(--accent);margin-bottom:12px;font-size:20px}
-  .card p{color:var(--muted);font-size:15px}
-  .text-block{background:var(--card); padding:40px; border-radius:20px; border-left:4px solid var(--accent); font-size:16px; color:var(--muted);}
-  .text-block strong{color:var(--accent-2)}
-  footer{text-align:center;padding:30px;color:var(--muted);font-size:14px;border-top:1px solid #222;margin-top:40px}
-
-  /* ========= TESTÉ IA ========= */
-  #teste{
-    background:var(--card); border-radius:20px; border:1px solid #222; padding:0; overflow:hidden;
-    max-width:1400px; margin:0 auto;
-  }
-  .teste-header{
-    padding:20px 30px; border-bottom:1px solid #222;
-    display:flex; align-items:center; gap:15px;
-  }
-  .avatar{
-    width:50px; height:50px; border-radius:50%;
-    background:linear-gradient(135deg, var(--accent), var(--accent-2));
-    display:flex; align-items:center; justify-content:center;
-    font-weight:800; font-size:20px; box-shadow:0 0 20px #7f5af055;
-  }
-  .teste-body{display:flex; gap:20px; padding:20px}
-  .chat-box{flex:1; display:flex; flex-direction:column; height:600px}
-  .messages{flex:1; padding:20px; overflow-y:auto; background:#0d0d17; border-radius:12px; margin-bottom:15px}
-  .msg{margin-bottom:15px; padding:12px 16px; border-radius:14px; max-width:85%; line-height:1.6; font-size:15px}
-  .msg.user{background:var(--accent-2); margin-left:auto; color:#fff}
-  .msg.teste{background:#222; border:1px solid #333}
-  .msg.teste strong{color:var(--accent)}
-  .input-area{display:flex; gap:10px}
-  .input-area textarea{
-    flex:1; background:#0d0d17; border:1px solid #333; border-radius:12px; padding:12px; color:var(--text);
-    resize:none; font-family:inherit; font-size:15px;
-  }
-  .code-box{flex:1.2; display:flex; flex-direction:column; height:600px}
-  .code-header{padding:15px 0; display:flex; justify-content:space-between; align-items:center}
-  .code-header h3{color:var(--accent)}
-  .btn-copy{background:#333; border:none; color:var(--text); padding:8px 14px; border-radius:8px; cursor:pointer; font-size:13px;}
-  .btn-copy:hover{background:var(--accent-2)}
-  #codeOutput{flex:1; padding:20px; background:#0d0d17; color:#00ff88; font-family:'Courier New', monospace; font-size:14px; overflow:auto; white-space:pre; border-radius:12px; border:1px solid #222}
-
-  @media(max-width:900px){.teste-body{flex-direction:column} .chat-box,.code-box{height:500px} header h1{font-size:38px}}
+:root{--vert:#00ff88;--noir:#0a0a0a;--gris:#111}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial}
+body{background:var(--noir);color:#eee}
+.container{max-width:900px;margin:0 auto;padding:30px}
+header{text-align:center;padding:40px 0}
+header h1{font-size:40px}
+header h1 span{color:var(--vert)}
+header p{color:#aaa;margin-top:10px}
+.builder{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+.box{background:var(--gris);border:1px solid #222;border-radius:15px;padding:20px}
+.box h3{color:var(--vert);margin-bottom:15px}
+textarea{width:100%;height:200px;background:#000;color:#eee;border:1px solid #333;border-radius:10px;padding:15px;font-size:16px;resize:none}
+textarea:focus{border-color:var(--vert);outline:none}
+.btn{width:100%;background:var(--vert);color:#000;padding:15px;border:none;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer;margin-top:15px;transition:0.3s}
+.btn:hover{box-shadow:0 0 20px var(--vert)}
+.btn:disabled{background:#333;color:#666;cursor:not-allowed}
+#output{background:#000;white-space:pre-wrap;font-family:'Courier New';font-size:13px;height:300px;overflow-y:auto}
+.exemples{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+.tag{background:#222;padding:8px 12px;border-radius:20px;font-size:13px;cursor:pointer;border:1px solid #333}
+.tag:hover{background:var(--vert);color:#000}
+@media(max-width:768px){.builder{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-  <!-- ========= PARTIE 1 : CRASH ACADEMY ========= -->
+<div class="container">
   <header>
-    <h1>L'Informatique : Le Cerveau du Monde</h1>
-    <p>Elle n'est plus une option. C'est l'oxygène de notre époque. Elle pense, elle crée, elle connecte 8 milliards d'humains en 1 seconde.</p>
-    <a href="#teste" class="btn">🤖 Tester l'IA Testé</a>
+    <h1>Destin <span>IA Builder</span></h1>
+    <p>Écris en français. Je te sors le code HTML/CSS direct.</p>
   </header>
 
-  <div class="container">
-
-    <section>
-      <h2>1. L'Informatique dans Notre Vie</h2>
-      <div class="grid">
-        <div class="card"><h3>Le Réveil</h3><p>Ton réveil sonne sur ton téléphone. Mobile money, WhatsApp, commande. Avant 8h, l'informatique a déjà travaillé pour toi 10 fois.</p></div>
-        <div class="card"><h3>L'École et le Travail</h3><p>Zoom, Google Drive, Notion, Slack. Sans ordi, l'économie s'arrête.</p></div>
-        <div class="card"><h3>Le Divertissement</h3><p>Netflix, TikTok, Jeux vidéo. Tout est code. L'informatique = notre principale source de loisirs.</p></div>
+  <div class="builder">
+    <div class="box">
+      <h3>1. Décris ton site en français 👇</h3>
+      <div class="exemples">
+        <div class="tag" onclick="setText('Je veux un site portfolio noir et vert avec mon nom Destin, photo, et bouton WhatsApp')">Portfolio</div>
+        <div class="tag" onclick="setText('Crée moi un site pour vendre des chaussures en ligne, couleur rouge, avec bouton commander sur WhatsApp')">Boutique</div>
+        <div class="tag" onclick="setText('Fais moi un site jeu Crash Plane avec un avion qui monte et bouton jouer')">Jeu</div>
       </div>
-    </section>
+      <textarea id="prompt" placeholder="Ex: Je veux un site pour mon salon de coiffure à Abomey-Calavi. Couleur rose. Avec galerie photo et prix."></textarea>
+      <button class="btn" id="generateBtn" onclick="genererSite()">✨ Générer mon site</button>
+    </div>
 
-    <section>
-      <h2>2. Ce Que l'Informatique a Changé</h2>
-      <div class="text-block">
-        <p>L'informatique a cassé 3 barrières :</p><br>
-        <p><strong>Temps :</strong> Lettre = 3 mois. Email = 3 secondes. IA = 3 minutes.</p><br>
-        <p><strong>Espace :</strong> Dirige une boîte au Bénin avec des clients à Tokyo. Le bureau est dans ta poche.</p><br>
-        <p><strong>Savoir :</strong> Un enfant de 12 ans à Abomey-Calavi apprend à coder comme un ingénieur à Silicon Valley. Gratuit.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>3. Les Métiers de l'Avenir</h2>
-      <div class="text-block">
-        <p><strong>1. Développeur Full-Stack :</strong> Construit les sites de A à Z.</p>
-        <p><strong>2. Ingénieur IA :</strong> Apprend aux machines à penser. Salaire le plus haut.</p>
-        <p><strong>3. Expert Cybersécurité :</strong> Protège le monde digital.</p>
-        <p><strong>4. Designer UI/UX :</strong> Rend les apps belles et addictives.</p>
-      </div>
-    </section>
-
-    <section style="text-align:center; background:var(--card); padding:50px 30px; border-radius:20px;">
-      <h2>Restons en Contact</h2>
-      <p style="color:var(--muted); margin-bottom:25px;">Question code, projet, ou juste parler tech ?</p>
-      <a href="https://wa.me/2290140311836" target="_blank" class="btn btn-whatsapp">💬 WhatsApp : 01 40 31 18 36</a>
-    </section>
-
+    <div class="box">
+      <h3>2. Voilà ton code HTML 👇</h3>
+      <div id="output">Ton code apparaîtra ici...</div>
+      <button class="btn" onclick="copierCode()">📋 Copier le code</button>
+    </div>
   </div>
-
-  <!-- ========= PARTIE 2 : TESTÉ IA ========= -->
-  <div class="container">
-    <section id="teste">
-      <div class="teste-header">
-        <div class="avatar">T</div>
-        <div>
-          <h1 style="font-size:22px;margin:0">Testé</h1>
-          <p style="color:var(--muted); font-size:13px;margin:0">Décris ton idée. Je code à ta place.</p>
-        </div>
-      </div>
-
-      <div class="teste-body">
-        <div class="chat-box">
-          <div class="messages" id="messages">
-            <div class="msg teste">
-              <strong>Testé:</strong> Yo Destin 😎 Moi c’est Testé. 
-              <br><br>Balance-moi ton idée. Ex: 
-              <br>→ `Fais-moi un site portfolio`
-              <br>→ `Crée un jeu du serpent`
-              <br>→ `Fais une boutique`
-            </div>
-          </div>
-          <div class="input-area">
-            <textarea id="userInput" rows="2" placeholder="Décris ton projet ici..."></textarea>
-            <button class="btn" onclick="sendMessage()">Envoyer</button>
-          </div>
-        </div>
-
-        <div class="code-box">
-          <div class="code-header">
-            <h3>Code généré</h3>
-            <button class="btn-copy" onclick="copyCode()">📋 Copier</button>
-          </div>
-          <div id="codeOutput">// En attente de ton idée...</div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    Crash Academy © 2026 | Apprends le code. Contrôle le futur. 
-  </footer>
+</div>
 
 <script>
-const messagesEl = document.getElementById('messages');
-const inputEl = document.getElementById('userInput');
-const codeEl = document.getElementById('codeOutput');
+const promptEl = document.getElementById('prompt');
+const outputEl = document.getElementById('output');
+const btnEl = document.getElementById('generateBtn');
 
-function generateCode(prompt){
-  prompt = prompt.toLowerCase();
-  if(prompt.includes('portfolio') || prompt.includes('cv')){
-    return `<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="UTF-8">\n<title>Portfolio</title>\n<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">\n<style>\n  body{margin:0;font-family:Poppins;background:linear-gradient(135deg,#0a0a0f,#141428);color:#fff;text-align:center;padding:120px 20px}\n  h1{font-size:52px;background:linear-gradient(90deg,#00d9ff,#7f5af0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}\n  .btn{background:#7f5af0;color:#fff;padding:14px 28px;border-radius:12px;text-decoration:none;display:inline-block;margin-top:30px;font-weight:700}\n</style>\n</head>\n<body>\n  <h1>Je suis Destin</h1>\n  <p>Développeur & Créateur | Abomey-Calavi</p>\n  <a href="#" class="btn">Voir mes Projets</a>\n</body>\n</html>`;
-  }
-  if(prompt.includes('jeu') || prompt.includes('serpent')){
-    return `<!DOCTYPE html>\n<html>\n<body style="margin:0;background:#0a0a0f;display:flex;justify-content:center;align-items:center;height:100vh">\n<canvas id="g" width="400" height="400" style="border:2px solid #7f5af0;border-radius:12px"></canvas>\n<script>\nconst c=document.getElementById('g'),x=c.getContext('2d');\nlet s=[{x:200,y:200}],d={x:20,y:0},f={x:100,y:100};\ndocument.onkeydown=e=>{if(e.key=='ArrowUp'&&d.y==0)d={x:0,y:-20};if(e.key=='ArrowDown'&&d.y==0)d={x:0,y:20};if(e.key=='ArrowLeft'&&d.x==0)d={x:-20,y:0};if(e.key=='ArrowRight'&&d.x==0)d={x:20,y:0}};\nsetInterval(()=>{s.unshift({x:s[0].x+d.x,y:s[0].y+d.y});if(s[0].x==f.x&&s[0].y==f.y)f={x:Math.floor(Math.random()*20)*20,y:Math.floor(Math.random()*20)*20};else s.pop();\nx.fillStyle='#0a0a0f';x.fillRect(0,0,400,400);x.fillStyle='#00d9ff';s.forEach(p=>x.fillRect(p.x,p.y,20,20));x.fillStyle='#7f5af0';x.fillRect(f.x,f.y,20,20);},100);\n<\/script>\n</body>\n</html>`;
-  }
-  if(prompt.includes('boutique') || prompt.includes('shop')){
-    return `<!DOCTYPE html>\n<html lang="fr">\n<head>\n<title>Boutique</title>\n<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">\n<style>\n  body{font-family:Poppins;background:#0a0a0f;margin:0;color:#fff}\n  header{background:linear-gradient(90deg,#00d9ff,#7f5af0);padding:30px;text-align:center}\n  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;padding:40px;max-width:1200px;margin:auto}\n  .card{background:#141428;padding:20px;border-radius:16px;border:1px solid #222}\n  .btn{background:#00d9ff;border:none;padding:12px 20px;border-radius:10px;font-weight:700;cursor:pointer;width:100%;margin-top:10px;color:#000}\n</style>\n</head>\n<body>\n<header><h1>Ma Boutique 🔥</h1></header>\n<div class="grid">\n  <div class="card"><h3>Basket Rouge</h3><p>25 000 FCFA</p><button class="btn">Acheter</button></div>\n  <div class="card"><h3>Basket Bleu</h3><p>25 000 FCFA</p><button class="btn">Acheter</button></div>\n  <div class="card"><h3>Basket Noir</h3><p>25 000 FCFA</p><button class="btn">Acheter</button></div>\n</div>\n</body>\n</html>`;
-  }
-  return `<!DOCTYPE html>\n<html lang="fr">\n<head>\n<meta charset="UTF-8">\n<title>Mon Site</title>\n<style>\n  body{margin:0;font-family:Poppins;background:linear-gradient(135deg,#0a0a0f,#141428);color:#fff;display:flex;justify-content:center;align-items:center;height:100vh;text-align:center}\n  h1{font-size:40px;background:linear-gradient(90deg,#00d9ff,#7f5af0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}\n</style>\n</head>\n<body>\n  <div>\n    <h1>Site généré par Testé</h1>\n    <p>Décris-moi mieux ton idée 😉</p>\n  </div>\n</body>\n</html>`;
+function setText(text){
+  promptEl.value = text;
 }
 
-function sendMessage(){
-  const text = inputEl.value.trim();
-  if(!text) return;
-  addMsg(text, 'user');
-  inputEl.value = '';
+function genererSite(){
+  const idee = promptEl.value.toLowerCase();
+  if(!idee){alert('Décris ton site d’abord Destin 😅');return}
+  
+  btnEl.disabled = true;
+  btnEl.innerText = 'Génération en cours...';
+  outputEl.innerText = 'Destin IA réfléchit...';
+
   setTimeout(() => {
-    addMsg(`Ok Destin, je génère le code pour : "${text}"`, 'teste');
-    codeEl.textContent = generateCode(text);
-  }, 800);
+    let html = '';
+
+    if(idee.includes('portfolio') || idee.includes('cv')){
+      html = genererPortfolio(idee);
+    } else if(idee.includes('boutique') || idee.includes('vendre') || idee.includes('chaussure')){
+      html = genererBoutique(idee);
+    } else if(idee.includes('jeu') || idee.includes('crash') || idee.includes('avion')){
+      html = genererJeu(idee);
+    } else if(idee.includes('coiffure') || idee.includes('salon') || idee.includes('restaurant')){
+      html = genererVitrine(idee);
+    } else {
+      html = genererBase(idee);
+    }
+
+    outputEl.innerText = html;
+    btnEl.disabled = false;
+    btnEl.innerText = '✨ Régénérer';
+  }, 1500);
 }
-function addMsg(text, who){
-  const div = document.createElement('div');
-  div.className = 'msg ' + who;
-  div.innerHTML = `<strong>${who==='teste'?'Testé:':'Toi:'}</strong> ${text}`;
-  messagesEl.appendChild(div);
-  messagesEl.scrollTop = messagesEl.scrollHeight;
+
+function genererPortfolio(idee){
+  const nom = idee.includes('destin') ? 'Destin' : 'Ton Nom';
+  const couleur = idee.includes('vert') ? '#00ff88' : '#4f46e5';
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>${nom} - Portfolio</title>
+<style>
+body{font-family:Arial;background:#0a0a0a;color:#eee;text-align:center;padding:50px}
+h1{color:${couleur};font-size:48px}
+.btn{background:${couleur};color:#000;padding:15px 30px;border-radius:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+  <h1>Salut, c'est ${nom}</h1>
+  <p>Développeur Web | Basé à Abomey-Calavi</p>
+  <a href="https://wa.me/229" class="btn">Me contacter sur WhatsApp</a>
+</body>
+</html>`;
 }
-function copyCode(){
-  navigator.clipboard.writeText(codeEl.textContent);
-  alert('Code copié ! Colle-le dans un fichier .html');
+
+function genererBoutique(idee){
+  const couleur = idee.includes('rouge') ? '#ef4444' : '#f59e0b';
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Boutique</title>
+<style>
+body{font-family:Arial;background:#fff;color:#111;text-align:center;padding:40px}
+h1{color:${couleur}}
+.produit{border:1px solid #ddd;padding:20px;border-radius:15px;margin:20px auto;max-width:300px}
+.btn{background:${couleur};color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;display:inline-block}
+</style>
+</head>
+<body>
+  <h1>Ma Boutique</h1>
+  <div class="produit">
+    <h3>Produit 1</h3>
+    <p>5.000 FCFA</p>
+    <a href="https://wa.me/229?text=Je veux commander" class="btn">Commander sur WhatsApp</a>
+  </div>
+</body>
+</html>`;
 }
-inputEl.addEventListener('keydown', e => {if(e.key === 'Enter' && !e.shiftKey){e.preventDefault(); sendMessage();}});
+
+function genererJeu(idee){
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Crash Plane</title>
+<style>
+body{background:#000;color:#fff;text-align:center;font-family:Arial}
+#avion{font-size:60px;animation:fly 2s infinite}
+@keyframes fly{50%{transform:translateY(-30px)}}
+.btn{background:#00ff88;color:#000;padding:15px 30px;border:none;border-radius:10px;font-size:18px;margin-top:30px}
+</style>
+</head>
+<body>
+  <h1>🚀 Crash Plane</h1>
+  <div id="avion">✈️</div>
+  <p>Multiplicateur: x1.00</p>
+  <button class="btn" onclick="alert('Jeu lancé !')">Jouer</button>
+</body>
+</html>`;
+}
+
+function genererVitrine(idee){
+  const couleur = idee.includes('rose') ? '#ec4899' : '#8b5cf6';
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Mon Salon</title>
+<style>
+body{font-family:Arial;background:#fafafa;color:#111}
+header{background:${couleur};color:#fff;text-align:center;padding:40px}
+.card{background:#fff;padding:20px;margin:20px;border-radius:15px;box-shadow:0 2px 10px #0001}
+</style>
+</head>
+<body>
+  <header><h1>Salon de Coiffure</h1><p>Abomey-Calavi</p></header>
+  <div class="container" style="max-width:600px;margin:auto;padding:20px">
+    <div class="card"><h3>Coiffure Homme</h3><p>2.000 FCFA</p></div>
+    <div class="card"><h3>Coiffure Dame</h3><p>3.500 FCFA</p></div>
+  </div>
+</body>
+</html>`;
+}
+
+function genererBase(idee){
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Mon Site</title>
+<style>
+body{font-family:Arial;background:#0a0a0a;color:#eee;text-align:center;padding:50px}
+h1{color:#00ff88}
+</style>
+</head>
+<body>
+  <h1>Mon Site</h1>
+  <p>${idee}</p>
+</body>
+</html>`;
+}
+
+function copierCode(){
+  navigator.clipboard.writeText(outputEl.innerText);
+  alert('Code copié ! Colle-le dans un fichier .html et ouvre-le 👌');
+}
 </script>
+
 </body>
 </html>
     
