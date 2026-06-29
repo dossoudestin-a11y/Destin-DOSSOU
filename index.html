@@ -100,7 +100,7 @@
     <section class="hero container">
       <div>
         <h1>Deviens <span>Développeur CEO</span> en 11 Leçons</h1>
-        <p>Avec Destin, ton professeur IA. Cours approfondis + Exercices + QCM noté à chaque fin de leçon.</p>
+        <p>Avec zavier, ton professeur IA. Cours approfondis + Exercices + QCM noté à chaque fin de leçon.</p>
         <button onclick="document.getElementById('chatBox').scrollIntoView()" class="btn primary" style="font-size:20px;padding:22px 44px">📚 Accéder aux Cours →</button>
       </div>
       <div><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80" alt="Code"></div>
@@ -114,12 +114,12 @@
       </div>
     </div></section>
 
-    <section><div class="container"><h2>👨‍🏫 Professeur IA : Destin</h2>
+    <section><div class="container"><h2>👨‍🏫 Professeur IA : Zavier</h2>
       <div class="chat-wrap">
         <div class="chat-head"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80"><div><div class="name">Destin - Professeur</div><div class="status">Cours + Exercices + QCM Noté</div></div></div>
         <div class="chat-box" id="chatBox"></div>
         <div class="chat-input">
-          <input id="chatInput" placeholder="Tape: lecon 1 pour commencer" onkeydown="if(event.key==='Enter')sendText()">
+          <input id="chatInput" placeholder="Tape: leçon 1 pour commencer" onkeydown="if(event.key==='Enter')sendText()">
           <button onclick="sendText()">➤</button>
           <div class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</div>
         </div>
@@ -134,9 +134,9 @@
       </div>
     </div></section>
 
-    <section><div class="container"><h2>Accès Complet : 15 000 FCFA</h2>
+    <section><div class="container"><h2>Accès Complet : 2500 FCFA</h2>
       <div class="pricing">
-        <div class="prix">15 000 FCFA</div>
+        <div class="prix">2500 FCFA</div>
         <div class="momo">
           <strong>💰 CELTIS MOBILE MONEY</strong><br>
           Numéro Dépôt : 01 92 88 18 10<br>
@@ -359,7 +359,7 @@ FÉLICITATIONS CEO. Tu as fini les 11 leçons.`
             div.innerHTML=`<img src="${avatar}" class="avatar"><div class="bubble">${text}</div>`;
             chatBox.appendChild(div);chatBox.scrollTop=chatBox.scrollHeight;
         }
-        addMessage('Bonjour Élève. Je suis Destin, ton Professeur.\n\nRÈGLES :\n1. Tape "lecon 1" à "lecon 11" pour avoir le cours complet.\n2. Chaque cours = Thème + Sigles + Code ligne par ligne + Exercice + QCM /5.\n3. Je ne parle QUE des cours. Pas de prix ici.\n\nCommence par : lecon 1','bot');
+        addMessage('Bonjour Élève. Je suis Zavier, ton Professeur.\n\nRÈGLES :\n1. Tape "lecon 1" à "lecon 11" pour avoir le cours complet.\n2. Chaque cours = Thème + Sigles + Code ligne par ligne + Exercice + QCM /5.\n3. Je ne parle QUE des cours. Pas de prix ici.\n\nCommence par : lecon 1','bot');
 
         function sendText(){
             const text=chatInput.value.trim();if(!text)return;
