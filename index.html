@@ -348,7 +348,7 @@ QCM FINAL /5 : Q1:Déploiement c’est? Q2:Netlify? Q3:domaine? Q4:https? Q5:bui
 FÉLICITATIONS CEO. Tu as fini les 11 leçons.`
         };
 
-        // PROF DESTIN - IL PARLE QUE COURS
+        // PROF Zavier- IL PARLE QUE COURS
         const chatBox=document.getElementById('chatBox');
         const chatInput=document.getElementById('chatInput');
         let noteTotal=0; let qcmEnCours=false;
@@ -379,7 +379,7 @@ FÉLICITATIONS CEO. Tu as fini les 11 leçons.`
             }
 
             let lessonMatch=lower.match(/lecon\s*(\d+)/);
-            let reply='Je suis ton Professeur. Tape uniquement : lecon 1 à lecon 11.';
+            let reply='Je suis ton Professeur. Tape uniquement : leçon 1 à leçon 11.';
             if(lessonMatch){
                 let num=+lessonMatch[1];
                 if(num>=1 && num<=11){
